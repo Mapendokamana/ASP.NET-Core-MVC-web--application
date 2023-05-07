@@ -1,0 +1,54 @@
+﻿@model IEnumerable<InlandMarina.Models.Slip>
+
+@{
+    ViewData["Title"] = "slipIndex";
+}
+
+<h1>Available Slips</h1>
+
+
+<form asp-action="Index" method="post">
+    <p>
+        <h2>Filter by Dock</h2>
+        <select name="id" asp-items="@ViewBag.Docks" class="form-control"
+                onchange="this.form.submit()">
+        </select>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dock)
+            </th>           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dock.Name)
+            </td>
+        </tr>}
+
+    </tbody>
+</table>
